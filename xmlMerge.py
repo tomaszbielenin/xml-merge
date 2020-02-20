@@ -1,5 +1,5 @@
-#Dodać check czy folder zawiera pliki xml
-#dodać uniwersalizacje
+#Add file selection window
+#Add parameters to specify root element and subelement
 
 import sys
 import os
