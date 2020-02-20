@@ -1,5 +1,6 @@
 #Add file selection window
 #Add parameters to specify root element and subelement
+#Add templete file selection
 
 import sys
 import os
