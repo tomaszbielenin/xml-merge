@@ -1,28 +1,25 @@
 #Add file selection window
 #Add parameters to specify root element and subelement
 #Add templete file selection
+#Check output file extension, change to xml
 
 import sys
 import os
 import xml.etree.ElementTree as ET
+import easygui
 
-# sFolder = 'C:/Scripting/PenXml'
-# dFile = 'XmlCombined.xml'
-print(sys.argv)
 if len(sys.argv) <= 1:
+  print("-- XML-MERGE --")
   print()
   print("-- Provide required parameters --")
-  sFolder = str(input('-- Source folder path:'))
-  dFile = os.path.join(sFolder, str(input('-- Output file name:')))
-  # vfolders = input('Viewfolder/s:')
-  # tolerance = str(0.001*float(input('Tolerance (mm):')))
+  print('-- Source folder path:')
+  sFolder = easygui.diropenbox()
+  print('-- Select output file:')
+  dFile = easygui.fileopenbox()
 else:
-  sFolder = str(sys.argv[1]) # source xml file with search sets
+  sFolder = str(sys.argv[1]) # source folder
   dFile = str(sys.argv[2]) # destination xml file
-#   vfolders = sys.argv[3].split(",") # viewfolder list to be processed
-#   tolerance = str(0.001*float(sys.argv[4])) # add function to set tolerance
 
-# ((os.path.basename(dst)).split(".")[0]) - get file name
 tmp = """<?xml version="1.0" encoding="UTF-8" ?>
 
 <exchange xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://download.autodesk.com/us/navisworks/schemas/nw-exchange-12.0.xsd" units="ft" filename="F34_2.nwd" filepath="C:/_NavisworksLocal/693584">
