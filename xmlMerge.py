@@ -1,4 +1,3 @@
-#Add file selection window
 #Add parameters to specify root element and subelement
 #Add templete file selection
 #Check output file extension, change to xml
@@ -28,17 +27,17 @@ tmp = """<?xml version="1.0" encoding="UTF-8" ?>
 </exchange>"""
 
 droot = ET.fromstring(tmp)
-vPts = droot.find("viewpoints")
+sub = droot.find("viewpoints")
 
-vlist = []
+slist = []
 for f in os.listdir(sFolder):
   if f.endswith(".xml"):
-    # print(file)
-    for v in ET.parse(os.path.join(sFolder, f)).findall('.//view'):
-      vlist.append(ET.tostring(v))
+    # print(f)
+    for s in ET.parse(os.path.join(sFolder, f)).findall('.//view'):
+      slist.append(ET.tostring(s))
 
-for v in vlist:
-  vPts.append(ET.fromstring(v))
+for s in slist:
+  sub.append(ET.fromstring(s))
 
 f = open(dFile, "w")
 (ET.ElementTree(droot)).write((f),encoding='unicode')
