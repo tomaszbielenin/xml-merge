@@ -1,6 +1,7 @@
 #Add parameters to specify root element and subelement
 #Add templete file selection
 #Check output file extension, change to xml
+#What if file/folder selection cancelled
 
 import sys
 import os
@@ -12,9 +13,11 @@ if len(sys.argv) <= 1:
   print()
   print("-- Provide required parameters --")
   print('-- Source folder path:')
-  sFolder = easygui.diropenbox()
+  sFolder = str(easygui.diropenbox()) # this causes problem in line 39
+  print(sFolder)
   print('-- Select output file:')
-  dFile = easygui.fileopenbox()
+  dFile = easygui.fileopenbox(default=sFolder)
+  print(dFile)
 else:
   sFolder = str(sys.argv[1]) # source folder
   dFile = str(sys.argv[2]) # destination xml file
@@ -26,19 +29,19 @@ tmp = """<?xml version="1.0" encoding="UTF-8" ?>
   </viewpoints>
 </exchange>"""
 
-droot = ET.fromstring(tmp)
-sub = droot.find("viewpoints")
+d = ET.fromstring(tmp)
+droot = d.find("viewpoints")
 
 slist = []
 for f in os.listdir(sFolder):
   if f.endswith(".xml"):
-    # print(f)
-    for s in ET.parse(os.path.join(sFolder, f)).findall('.//view'):
+    # print(os.path.join(sFolder, f))
+    for s in ET.parse(os.path.join(sFolder, f)).findall('.//view'): # there's a problem caused by folder path, line 16
       slist.append(ET.tostring(s))
 
 for s in slist:
-  sub.append(ET.fromstring(s))
+  droot.append(ET.fromstring(s))
 
 f = open(dFile, "w")
-(ET.ElementTree(droot)).write((f),encoding='unicode')
+(ET.ElementTree(d)).write((f),encoding='unicode')
 f.close()
