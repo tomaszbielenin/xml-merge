@@ -1,3 +1,4 @@
+# Some examlpes: https://www.deltaxml.com/products/merge/xml-merge/ 
 #Add parameters to specify root element and subelement
 #Add templete file selection
 #Check output file extension, change to xml
