@@ -4,6 +4,7 @@
 # Check output file extension, change to xml
 # What if file/folder selection cancelled
 # Check item paths if fullpath or just filename
+# Some examples: https://www.deltaxml.com/products/merge/xml-merge/ 
 
 import sys
 import os
