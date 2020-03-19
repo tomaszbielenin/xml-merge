@@ -1,7 +1,9 @@
-#Add parameters to specify root element and subelement
-#Add templete file selection
-#Check output file extension, change to xml
-#What if file/folder selection cancelled
+# Tasklist:
+# Add parameters to specify root element and subelement
+# Add templete file selection
+# Check output file extension, change to xml
+# What if file/folder selection cancelled
+# Check item paths if fullpath or just filename
 
 import sys
 import os
